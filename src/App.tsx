@@ -1,20 +1,32 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const App = () => {
-   const [count, setCount] = useState(0);
+
+   type userType = {
+      birthDate: Date,
+      name: string
+   }
+   const [users, setUsers] = useState<userType[]>(new Array<userType>());
 
    useEffect(() => {
-      setCount(10)
+      axios.get('/api/Users')
+         .then(e => {
+            setUsers(e.data)
+            console.log(e.data)
+         })
    }, [])
-
-   const onClickHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-      setCount(prev => prev + 1)
-   }
 
    return (
       <>
-         <div>count: {count}</div>
-         <button onClick={onClickHandler}>Click</button>
+         <div>Hello!</div>
+         <React.Fragment>
+            {users.map((val, index) => {
+               return (
+                  <div key={index}>Name:{val.name}</div>
+               )
+            })}
+         </React.Fragment>
       </>
    );
 }

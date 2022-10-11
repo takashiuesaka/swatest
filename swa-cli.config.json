@@ -7,7 +7,7 @@
       "appBuildCommand": "yarn build",
       "run": "yarn start",
       "appDevserverUrl": "http://localhost:3000",
-      "apiLocation": "https://localhost:7114"
+      "apiLocation": "http://localhost:5114"
     }
   }
 }
